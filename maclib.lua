@@ -55,7 +55,7 @@ imageButton.Parent = screenGui
 imageButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 imageButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
 imageButton.BorderSizePixel = 0
-imageButton.Position = UDim2.new(0, -28, 0.5, -28)  -- Center left position
+imageButton.Position = UDim2.new(0, 28, 0.5, 28)  -- Center left position
 imageButton.Size = UDim2.new(0, 57, 0, 56)
 imageButton.Image = "http://www.roblox.com/asset/?id=5430597512"
 
