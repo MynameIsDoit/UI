@@ -50,25 +50,24 @@ local screenGui = Instance.new("ScreenGui")
 screenGui.Name = "MacLibScreenGui"
 screenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")  -- Add ScreenGui to PlayerGui
 
--- Create an ImageButton to toggle MacLib visibility
 local imageButton = Instance.new("ImageButton")
 imageButton.Parent = screenGui
 imageButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 imageButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
 imageButton.BorderSizePixel = 0
-imageButton.Position = UDim2.new(0.5, -28, 0, 10)  -- Top-center positioning
+imageButton.Position = UDim2.new(0.5, -28, 0.5, -28)  
 imageButton.Size = UDim2.new(0, 57, 0, 56)
-imageButton.AnchorPoint = Vector2.new(0.5, 0)
 imageButton.Image = "http://www.roblox.com/asset/?id=5430597512"
 
--- Visibility control variable
 local isVisible = false
 
--- ImageButton click event to toggle visibility of MacLib
 imageButton.MouseButton1Click:Connect(function()
-    if _G.macLibInstance then
+    local coreGui = game:GetService("CoreGui")
+    local macLib = coreGui:FindFirstChild("MacLib")
+
+    if macLib then
         isVisible = not isVisible
-        _G.macLibInstance.Enabled = isVisible
+        macLib.Enabled = isVisible
     end
 end)
 
@@ -89,9 +88,6 @@ function MacLib:Window(Settings)
 	macLib.ScreenInsets = Enum.ScreenInsets.None
 	macLib.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 	macLib.Parent = (isStudio and LocalPlayer.PlayerGui) or game:GetService("CoreGui")
-
-	    _G.macLibInstance = macLib
-	    macLib.Enabled = isVisible
 
 	local notifications = Instance.new("Frame")
 	notifications.Name = "Notifications"
@@ -231,24 +227,6 @@ function MacLib:Window(Settings)
 	exit.BackgroundColor3 = Color3.fromRGB(250, 93, 86)
 	exit.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	exit.BorderSizePixel = 0
-
-	    local closeButton = Instance.new("TextButton")
-	    closeButton.Name = "CloseButton"
-	    closeButton.Text = "X"
-	    closeButton.TextSize = 24
-	    closeButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-	    closeButton.Font = Enum.Font.SourceSansBold
-	    closeButton.Size = UDim2.new(0, 50, 0, 50)
-	    closeButton.Position = UDim2.new(1, -55, 0, 5)  -- Positioned near the top-right corner of the Base
-	    closeButton.AnchorPoint = Vector2.new(1, 0)
-	    closeButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
-	    closeButton.Parent = base
-	
-	    -- Close button click event
-	    closeButton.MouseButton1Click:Connect(function()
-	        macLib.Enabled = false
-	        isVisible = false
-	    end)
 
 	local uICorner = Instance.new("UICorner")
 	uICorner.Name = "UICorner"
