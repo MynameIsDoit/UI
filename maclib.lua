@@ -46,13 +46,16 @@ local function Tween(instance, tweeninfo, propertytable)
 	return TweenService:Create(instance, tweeninfo, propertytable)
 end
 
-screenGui.Parent = player:WaitForChild("PlayerGui")
+local screenGui = Instance.new("ScreenGui")
+screenGui.Name = "MacLibScreenGui"
+screenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")  -- Add ScreenGui to PlayerGui
 
+local imageButton = Instance.new("ImageButton")
 imageButton.Parent = screenGui
 imageButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 imageButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
 imageButton.BorderSizePixel = 0
-imageButton.Position = UDim2.new(0.486806184, 0, 0.126297578, 0)
+imageButton.Position = UDim2.new(0.5, -28, 0.5, -28)  
 imageButton.Size = UDim2.new(0, 57, 0, 56)
 imageButton.Image = "http://www.roblox.com/asset/?id=5430597512"
 
@@ -67,7 +70,6 @@ imageButton.MouseButton1Click:Connect(function()
         macLib.Enabled = isVisible
     end
 end)
-
 
 --// Library Functions
 function MacLib:Window(Settings)
